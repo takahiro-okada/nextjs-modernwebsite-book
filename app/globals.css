@@ -3,19 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --color-text-main: #333;
+  --color-text-sub: #999;
+  --color-text-unpainted: #fff;
+  --color-text-error: #f33;
+  --color-bg-main: #fff;
+  --color-bg-sub: #f3f3f3;
+  --color-bg-code: #fafafa;
+  --color-bg-painted: #333;
+  --color-border-dark: #333;
+  --color-border: #ddd;
+  --color-border-light: #f3f3f3;
+  --color-current: #eee;
+  --color-button-primary: #333;
+  --border-radius: 4px;
 }
