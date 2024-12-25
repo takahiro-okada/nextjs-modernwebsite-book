@@ -19,7 +19,9 @@ export type Category = {
 export type News = {
   id: string;
   title: string;
+  description: string;
   publishedAt: string;
+  thumbnail: MicoCMSImage;
   createdAt: string;
   category: Category;
 } & MicroCMSListContent;
@@ -59,6 +61,18 @@ export const getNewdsDetail = async (
 ) => {
   const detailData = await client.get<News>({
     endpoint: `news`,
+    contentId,
+    queries,
+  });
+  return detailData;
+};
+
+export const getCategoryDetail = async (
+  contentId: string,
+  queries?: MicroCMSQuries
+) => {
+  const detailData = await client.get<Category>({
+    endpoint: `categories`,
     contentId,
     queries,
   });
