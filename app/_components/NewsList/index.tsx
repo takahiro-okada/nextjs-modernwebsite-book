@@ -39,17 +39,6 @@ export default function NewsList({ news }: Props) {
             <dl className={styles.content}>
               <dt className={styles.title}>{article.title}</dt>
               <dd className={styles.meta}>
-                <span>{article.category.name}</span>
-                <span>
-                  <Image
-                    src="/clock.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    priority
-                  />
-                  {article.publishedAt}
-                </span>
                 <Category category={article.category} />
                 <Date date={article.publishedAt ?? article.createdAt} />
               </dd>
