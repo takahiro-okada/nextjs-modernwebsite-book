@@ -1,15 +1,15 @@
 import { createClient } from "microcms-js-sdk";
 import type {
-  MicroCMSQuries,
-  MicoCMSImage,
+  MicroCMSQueries,
+  MicroCMSImage,
   MicroCMSListContent,
 } from "microcms-js-sdk";
 
 export type Member = {
-  id: string;
   name: string;
+  profile: string;
   position: string;
-  image: MicoCMSImage;
+  image: MicroCMSImage;
 } & MicroCMSListContent;
 
 export type Category = {
@@ -21,9 +21,10 @@ export type News = {
   title: string;
   description: string;
   publishedAt: string;
-  thumbnail: MicoCMSImage;
+  thumbnail: MicroCMSImage;
   createdAt: string;
   category: Category;
+  content: string;
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -39,16 +40,16 @@ const client = createClient({
   apiKey: process.env.MICROCMS_API_KEY,
 });
 
-export const getMembersList = async (queries?: MicroCMSQuries) => {
-  const listData = await client.get<Member>({
+export const getMembersList = async (queries?: MicroCMSQueries) => {
+  const listData = await client.getList<Member>({
     endpoint: "members",
     queries,
   });
   return listData;
 };
 
-export const getNewsList = async (queries?: MicroCMSQuries) => {
-  const listData = await client.get<News>({
+export const getNewsList = async (queries?: MicroCMSQueries) => {
+  const listData = await client.getList<News>({
     endpoint: "news",
     queries,
   });
@@ -57,7 +58,7 @@ export const getNewsList = async (queries?: MicroCMSQuries) => {
 
 export const getNewsDetail = async (
   contentId: string,
-  queries?: MicroCMSQuries
+  queries?: MicroCMSQueries
 ) => {
   const detailData = await client.get<News>({
     endpoint: `news`,
@@ -69,7 +70,7 @@ export const getNewsDetail = async (
 
 export const getCategoryDetail = async (
   contentId: string,
-  queries?: MicroCMSQuries
+  queries?: MicroCMSQueries
 ) => {
   const detailData = await client.get<Category>({
     endpoint: `categories`,

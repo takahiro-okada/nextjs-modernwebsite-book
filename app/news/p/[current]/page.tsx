@@ -1,20 +1,20 @@
 import { getNewsList } from "@/app/_libs/microcms";
 import NewsList from "@/app/_components/NewsList";
-import { parse } from "path";
 import { notFound } from "next/navigation";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 import Pagination from "@/app/_components/Pagination";
 
 type Props = {
-  params: {
+  params: Promise<{
     current: string;
-  };
+  }>;
 };
 
 export default async function Page({ params }: Props) {
-  const current = Number(parse(params.current).name);
+  const resolvedParams = await params;
+  const current = Number(resolvedParams.current);
 
-  if (Number.isNaN(Number(current) || current < 1)) {
+  if (Number.isNaN(current) || current < 1) {
     notFound();
   }
 

@@ -4,26 +4,27 @@ import styles from "./index.module.css";
 
 type Props = {
   totalCount: number;
-  current: number;
-  bathPath?: string;
+  current?: number;
+  basePath?: string;
 };
 
 export default function Pagination({
   totalCount,
   current = 1,
-  bathPath = "/news",
+  basePath = "/news",
 }: Props) {
   const pages = Array.from(
     { length: Math.ceil(totalCount / NEWS_LIST_LIMIT) },
     (_, i) => i + 1
   );
+
   return (
     <nav>
       <ul className={styles.container}>
         {pages.map((p) => (
-          <li key={p} className={styles.item}>
+          <li className={styles.list} key={p}>
             {current !== p ? (
-              <Link href={`${bathPath}/p/${p}`} className={styles.item}>
+              <Link href={`${basePath}/p/${p}`} className={styles.item}>
                 {p}
               </Link>
             ) : (
