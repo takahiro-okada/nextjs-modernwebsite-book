@@ -55,7 +55,7 @@ export const getNewsList = async (queries?: MicroCMSQuries) => {
   return listData;
 };
 
-export const getNewdsDetail = async (
+export const getNewsDetail = async (
   contentId: string,
   queries?: MicroCMSQuries
 ) => {
